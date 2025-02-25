@@ -1,20 +1,15 @@
 package main
 
 import (
-	"headFirst/Strategy_pattern/Duck"
+	"headFirst/Observer_pattern/observer/obs1"
+	"headFirst/Observer_pattern/weather_data"
 )
 
 func main() {
+	weather := weather_data.Weather{}
+	subscriberOne := obs1.ClientOne{Name: "Клиент - 1"}
 
-	var duck Duck.Ducker
-	duck = &Duck.DefaultDuck{Name: "Утка Lame", FlyBehavior: &Duck.FlyNot{}}
-	duck.ExclusiveFly()
-
-	duck = &Duck.RezinDuck{Name: "Утка John", FlyBehavior: &Duck.FlyWithWings{}}
-	duck.ExclusiveFly()
-
-	duck = &Duck.PrimankaDuck{Name: "Игрушечная утка", FlyBehavior: &Duck.FlyNot{}}
-	duck.ExclusiveFly()
-	duck.SetFly(&Duck.FlyWithRocket{})
-	duck.ExclusiveFly()
+	weather.RegisterObs(&subscriberOne)
+	weather.SetMeasurements(22, 22, 22)
+	weather.GetInfo()
 }

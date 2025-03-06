@@ -1,0 +1,11 @@
+SELECT
+    MIN(price),
+    MAX(price)
+FROM
+    book
+GROUP BY
+    author
+HAVING
+    SUM(amount * price) > 5000
+ORDER BY
+    price DESC
